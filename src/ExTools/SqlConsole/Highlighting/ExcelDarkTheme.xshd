@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<SyntaxDefinition name="ExcelDarkTheme" extensions=".sql" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="Foreground" foreground="#c6c6c6" exampleText="[TABLE]" />
+	<Color name="DateTime" foreground="#D6A056" exampleText="#9:00:00#" />
+	<Color name="Char" foreground="#CB4141" exampleText="name = 'abc'" />
+	<Color name="Keywords" foreground="#569CD6" exampleText="SELECT FROM" />
+	<Color name="Functions" foreground="#C975D5" exampleText="Sum" />
+	<Color name="Literal" foreground="#818181" exampleText="NULL" />
+	<Color name="Digits" foreground="#B5CEA8" exampleText="1.2" />
+	<Color name="Punctuation" foreground="#818181" exampleText=",.=(" />
+
+	<RuleSet ignoreCase="true">
+
+		<Span color="Foreground">
+			<Begin>\[</Begin>
+			<End>\]</End>
+		</Span>
+
+		<Span color="DateTime">
+			<Begin>\#</Begin>
+			<End>\#</End>
+		</Span>
+
+		<Span color="Char" multiline="true">
+			<Begin>'</Begin>
+			<End>'</End>
+			<RuleSet>
+				<Span begin="\\" end="." />
+			</RuleSet>
+		</Span>
+
+		<Span color="Char" multiline="true">
+			<Begin>"</Begin>
+			<End>"</End>
+			<RuleSet>
+				<Span begin="\\" end="." />
+			</RuleSet>
+		</Span>
+
+		<Rule color="Digits">
+			\b0[xX][0-9a-fA-F]+|(\b\d+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?
+		</Rule>
+
+		<Rule color="Punctuation">
+			[,.=()\\+\-/*&lt;&gt;^+!&amp;]+
+		</Rule>
+
+		<Keywords color="Literal">
+			<Word>NULL</Word>
+		</Keywords>
+
+		<Keywords color="Keywords">
+			<Word>ALL</Word>
+			<Word>AND</Word>
+			<Word>ANY</Word>
+			<Word>AS</Word>
+			<Word>BETWEEN</Word>
+			<Word>DESC</Word>
+			<Word>DISTINCT</Word>
+			<Word>DISTINCTROW</Word>
+			<Word>EQV</Word>
+			<Word>EXISTS</Word>
+			<Word>FROM</Word>
+			<Word>GROUP BY</Word>
+			<Word>HAVING</Word>
+			<Word>IN</Word>
+			<Word>INNER JOIN</Word>
+			<Word>IS NOT NULL</Word>
+			<Word>IS NULL</Word>
+			<Word>LEFT JOIN</Word>
+			<Word>LIKE</Word>
+			<Word>NOT</Word>
+			<Word>ON</Word>
+			<Word>OR</Word>
+			<Word>ORDER BY</Word>
+			<Word>PERCENT</Word>
+			<Word>PIVOT</Word>
+			<Word>RIGHT JOIN</Word>
+			<Word>SELECT</Word>
+			<Word>TOP</Word>
+			<Word>TRANSFORM</Word>
+			<Word>UNION</Word>
+			<Word>WHERE</Word>
+			<Word>XOR</Word>
+		</Keywords>
+
+		<Keywords color="Functions">
+			<Word>avg</Word>
+			<Word>count</Word>
+			<Word>davg</Word>
+			<Word>dcount</Word>
+			<Word>dfirst</Word>
+			<Word>dlast</Word>
+			<Word>dlookup</Word>
+			<Word>dmax</Word>
+			<Word>dmin</Word>
+			<Word>dsum</Word>
+			<Word>first</Word>
+			<Word>last</Word>
+			<Word>max</Word>
+			<Word>min</Word>
+			<Word>stdev</Word>
+			<Word>stdevp</Word>
+			<Word>sum</Word>
+			<Word>var</Word>
+			<Word>varp</Word>
+			<Word>mod</Word>
+			<Word>date</Word>
+			<Word>dateadd</Word>
+			<Word>datediff</Word>
+			<Word>datepart</Word>
+			<Word>dateserial</Word>
+			<Word>datevalue</Word>
+			<Word>day</Word>
+			<Word>hour</Word>
+			<Word>minute</Word>
+			<Word>month</Word>
+			<Word>monthname</Word>
+			<Word>now</Word>
+			<Word>second</Word>
+			<Word>time</Word>
+			<Word>timeserial</Word>
+			<Word>timevalue</Word>
+			<Word>weekday</Word>
+			<Word>weekdayname</Word>
+			<Word>year</Word>
+			<Word>asc</Word>
+			<Word>cbool</Word>
+			<Word>cbyte</Word>
+			<Word>ccur</Word>
+			<Word>cdate</Word>
+			<Word>cdbl</Word>
+			<Word>cdec</Word>
+			<Word>chr</Word>
+			<Word>cint</Word>
+			<Word>clng</Word>
+			<Word>csng</Word>
+			<Word>cstr</Word>
+			<Word>cvar</Word>
+			<Word>hex</Word>
+			<Word>str</Word>
+			<Word>val</Word>
+			<Word>isdate</Word>
+			<Word>isnull</Word>
+			<Word>isnumeric</Word>
+			<Word>typename</Word>
+			<Word>abs</Word>
+			<Word>atn</Word>
+			<Word>cos</Word>
+			<Word>exp</Word>
+			<Word>fix</Word>
+			<Word>int</Word>
+			<Word>log</Word>
+			<Word>round</Word>
+			<Word>sgn</Word>
+			<Word>sin</Word>
+			<Word>sqr</Word>
+			<Word>tan</Word>
+			<Word>format</Word>
+			<Word>instr</Word>
+			<Word>instrrev</Word>
+			<Word>lcase</Word>
+			<Word>left</Word>
+			<Word>len</Word>
+			<Word>ltrim</Word>
+			<Word>mid</Word>
+			<Word>replace</Word>
+			<Word>right</Word>
+			<Word>rtrim</Word>
+			<Word>space</Word>
+			<Word>strcomp</Word>
+			<Word>strconv</Word>
+			<Word>strreverse</Word>
+			<Word>trim</Word>
+			<Word>ucase</Word>
+			<Word>choose</Word>
+			<Word>iif</Word>
+			<Word>switch</Word>
+		</Keywords>
+	</RuleSet>
+</SyntaxDefinition>
