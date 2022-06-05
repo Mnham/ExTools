@@ -8,8 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sqlconsole="clr-namespace:ExTools.SqlConsole"
     d:DataContext="{d:DesignInstance Type=sqlconsole:ConsoleViewModel}"
-    d:Height="450"
-    d:Width="800"
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -33,10 +31,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition
-                Width="Auto"
-                MinWidth="200"
-                MaxWidth="400" />
+            <ColumnDefinition Width="Auto" MinWidth="280" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
@@ -50,9 +45,9 @@
                     <DataTemplate DataType="{x:Type connection:ConnectionOptionsViewModel}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition SharedSizeGroup="ConnectionType" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="ConnectionType" />
                                 <ColumnDefinition SharedSizeGroup="Name" />
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
                             <TextBlock
@@ -65,8 +60,10 @@
 
                             <TextBlock
                                 Grid.Column="1"
+                                Width="150"
                                 Margin="12 0 0 0"
-                                Text="{Binding Name}" />
+                                Text="{Binding Name}"
+                                TextTrimming="CharacterEllipsis" />
 
                             <StackPanel
                                 Grid.Column="2"
@@ -116,7 +113,7 @@
 
             <TabControl
                 x:Name="ConnectionTypes"
-                MinWidth="500"
+                MinWidth="400"
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                 FontSize="15"
                 SelectedIndex="{Binding ConnectionEditor.SelectedConnectionTypeIndex, Mode=TwoWay}"
