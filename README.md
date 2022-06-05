@@ -6,7 +6,9 @@
 
 ---
 Подключение к текущей книге:
+
 <img src="./images/overview.png" >
 
-Подключение к Vertica:
-<img src="./images/vertica.png" >
+Управление подключениями:
+
+<img src="./images/connections.png" >
