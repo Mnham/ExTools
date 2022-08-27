@@ -12,7 +12,9 @@ namespace ExTools
 {
     public sealed partial class ThisAddIn
     {
-        public static IServiceProvider Services { get; private set; }
+        private static IServiceProvider _services;
+
+        public static T GetService<T>() where T : class => _services.GetService<T>();
 
         public CustomTaskPane AddTaskPane(UserControl userControl, string title) =>
             CustomTaskPanes.Add(userControl, title);
@@ -22,14 +24,14 @@ namespace ExTools
 
         private static void ConfigureServices()
         {
-            Services = new ServiceCollection()
+            _services = new ServiceCollection()
                 .AddSingleton<ConsoleViewModelProvider>()
                 .AddSingleton<ConfigurationsProvider>()
                 .AddSingleton<ConnectionsManager>()
                 .AddTransient<ConsoleViewModel>()
                 .BuildServiceProvider();
 
-            ConnectionsManager connectionsManager = Services.GetService<ConnectionsManager>();
+            ConnectionsManager connectionsManager = _services.GetService<ConnectionsManager>();
             connectionsManager.Initialize();
         }
 

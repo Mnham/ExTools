@@ -30,9 +30,10 @@ namespace ExTools.Dialog
             {
                 dialogHost.Visibility = Visibility.Visible;
 
-                DoubleAnimationUsingKeyFrames fadeIn = new();
-                fadeIn.KeyFrames.Add(new EasingDoubleKeyFrame(0, KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(500))));
-                fadeIn.KeyFrames.Add(new EasingDoubleKeyFrame(1, KeyTime.FromTimeSpan(TimeSpan.FromSeconds(1))));
+                DoubleAnimation fadeIn = new(1, TimeSpan.FromSeconds(1))
+                {
+                    BeginTime = TimeSpan.FromMilliseconds(500)
+                };
 
                 dialogHost.BeginAnimation(fadeIn);
             }

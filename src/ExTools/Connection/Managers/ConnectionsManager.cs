@@ -1,9 +1,9 @@
-﻿using ExTools.Connection.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+using ExTools.Connection.Models;
 using ExTools.Infrastructure;
 using ExTools.SqlConsole.Models;
 using ExTools.SqlConsole.Services;
-
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 using System;
 using System.Collections.Generic;

@@ -37,7 +37,7 @@
 
         <Border BorderBrush="{StaticResource AttentionToActionBrush}" BorderThickness="0 0 1 0">
             <ListView
-                d:ItemsSource="{d:SampleData ItemCount=3}"
+                d:ItemsSource="{d:SampleData}"
                 Grid.IsSharedSizeScope="True"
                 ItemsSource="{Binding ConnectionsManager.Connections}"
                 SelectedItem="{Binding ConnectionEditor.SelectedConnection, Mode=TwoWay}">

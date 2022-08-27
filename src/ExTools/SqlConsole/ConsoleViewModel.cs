@@ -1,4 +1,7 @@
-﻿using ExTools.Connection;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+using ExTools.Connection;
 using ExTools.Connection.Managers;
 using ExTools.Connection.Models;
 using ExTools.Dialog;
@@ -10,8 +13,6 @@ using ExTools.SqlConsole.Services;
 using ICSharpCode.AvalonEdit.Highlighting;
 
 using Microsoft.Office.Interop.Excel;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Win32;
 
 using System;
