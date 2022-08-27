@@ -2,8 +2,6 @@
 
 using ICSharpCode.AvalonEdit.Search;
 
-using Microsoft.Extensions.DependencyInjection;
-
 using System.Windows.Controls;
 
 namespace ExTools.SqlConsole
@@ -12,7 +10,7 @@ namespace ExTools.SqlConsole
     {
         public Console()
         {
-            ConsoleViewModelProvider viewModelProvider = ThisAddIn.Services.GetService<ConsoleViewModelProvider>();
+            ConsoleViewModelProvider viewModelProvider = ThisAddIn.GetService<ConsoleViewModelProvider>();
             DataContext = viewModelProvider.GetConsoleViewModel();
             InitializeComponent();
             SearchPanel.Install(Editor);

@@ -1,13 +1,13 @@
-﻿using ExTools.Connection.Helpers;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+using ExTools.Connection.Helpers;
 using ExTools.Connection.Managers;
 using ExTools.Connection.Models;
 using ExTools.SqlConsole;
 using ExTools.SqlConsole.Services;
 
 using MaterialDesignThemes.Wpf;
-
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 using System;
 using System.Threading.Tasks;

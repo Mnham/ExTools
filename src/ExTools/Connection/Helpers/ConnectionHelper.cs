@@ -4,8 +4,6 @@ using ExTools.SqlConsole.Models;
 using ExTools.SqlConsole.QueryExecutor;
 using ExTools.SqlConsole.Services;
 
-using Microsoft.Extensions.DependencyInjection;
-
 using System;
 using System.Threading.Tasks;
 
@@ -13,8 +11,8 @@ namespace ExTools.Connection.Helpers
 {
     public static class ConnectionHelper
     {
-        private static readonly ConfigurationsProvider _configurationsProvider = ThisAddIn.Services.GetService<ConfigurationsProvider>();
-        private static readonly ConsoleViewModelProvider _consoleViewModelProvider = ThisAddIn.Services.GetService<ConsoleViewModelProvider>();
+        private static readonly ConfigurationsProvider _configurationsProvider = ThisAddIn.GetService<ConfigurationsProvider>();
+        private static readonly ConsoleViewModelProvider _consoleViewModelProvider = ThisAddIn.GetService<ConsoleViewModelProvider>();
 
         public static async Task<bool> TestConnectionAsync(ConnectionOptions сonnectionOptions)
         {

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Office.Interop.Excel;
+﻿using Microsoft.Office.Interop.Excel;
 
 using System.Collections.Generic;
 
@@ -21,7 +20,7 @@ namespace ExTools.SqlConsole.Services
             {
                 ReleaseViewModel(activeWorkbook);
 
-                viewModel = ThisAddIn.Services.GetService<ConsoleViewModel>();
+                viewModel = ThisAddIn.GetService<ConsoleViewModel>();
                 _viewModels[activeWorkbook] = viewModel;
 
                 return viewModel;
