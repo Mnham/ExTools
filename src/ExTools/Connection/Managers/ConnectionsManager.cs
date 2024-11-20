@@ -1,9 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-
-using ExTools.Connection.Models;
-using ExTools.Infrastructure;
-using ExTools.SqlConsole.Models;
-using ExTools.SqlConsole.Services;
+﻿#nullable enable
 
 using System;
 using System.Collections.Generic;
@@ -11,23 +6,20 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using CommunityToolkit.Mvvm.ComponentModel;
+using ExTools.Connection.Models;
+using ExTools.Infrastructure;
+using ExTools.SqlConsole.Models;
+using ExTools.SqlConsole.Services;
 
 namespace ExTools.Connection.Managers
 {
-    public sealed class ConnectionsManager : ObservableObject
+    public sealed class ConnectionsManager(ConfigurationsProvider configurationsProvider, ConsoleViewModelProvider consoleViewModelProvider) : ObservableObject
     {
-        private readonly ConfigurationsProvider _configurationsProvider;
-        private readonly ConsoleViewModelProvider _consoleViewModelProvider;
-        private ObservableCollection<ConnectionOptionsViewModel> _connections = new();
-        private FileInfo _connectionsFile;
+        private ObservableCollection<ConnectionOptionsViewModel> _connections = [];
+        private FileInfo _connectionsFile = null!;
 
         public IEnumerable<ConnectionOptionsViewModel> Connections => _connections;
-
-        public ConnectionsManager(ConfigurationsProvider configurationsProvider, ConsoleViewModelProvider consoleViewModelProvider)
-        {
-            _configurationsProvider = configurationsProvider;
-            _consoleViewModelProvider = consoleViewModelProvider;
-        }
 
         public ConnectionOptionsViewModel AddConnection(ConnectionOptions сonnectionOptions)
         {
@@ -45,11 +37,11 @@ namespace ExTools.Connection.Managers
             string addInName = Assembly.GetExecutingAssembly().GetName().Name;
             DirectoryInfo addInFolder = CreateDirectory(userFolder, addInName);
 
-            _connectionsFile = new(Path.Combine(addInFolder.FullName, "connections"));
+            _connectionsFile = new FileInfo(Path.Combine(addInFolder.FullName, "connections"));
             if (_connectionsFile.Exists)
             {
                 ConnectionOptions[] connections = _connectionsFile.DeserializeJson<ConnectionOptions[]>();
-                List<ConnectionOptionsViewModel> viewModels = connections.Select(c => CreateConnection(c)).ToList();
+                List<ConnectionOptionsViewModel> viewModels = connections.Select(CreateConnection).ToList();
                 _connections = new ObservableCollection<ConnectionOptionsViewModel>(viewModels);
             }
         }
@@ -67,8 +59,8 @@ namespace ExTools.Connection.Managers
 
         private ConnectionOptionsViewModel CreateConnection(ConnectionOptions connectionOptions)
         {
-            ConsoleConfiguration config = _configurationsProvider.GetConfiguration(connectionOptions.ConnectionType);
-            ConnectionOptionsViewModel connection = new(connectionOptions, this, _consoleViewModelProvider)
+            ConsoleConfiguration config = configurationsProvider.GetConfiguration(connectionOptions.ConnectionType);
+            ConnectionOptionsViewModel connection = new(connectionOptions, this, consoleViewModelProvider)
             {
                 AccentColor = config.AccentColor
             };

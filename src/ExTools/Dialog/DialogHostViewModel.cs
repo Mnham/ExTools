@@ -1,15 +1,16 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿#nullable enable
 
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace ExTools.Dialog
 {
     public sealed class DialogHostViewModel : ObservableObject
     {
-        private TaskCompletionSource<bool> _completionSource;
+        private TaskCompletionSource<bool>? _completionSource;
         private bool _isMessageOpen;
         private bool _isProgressOpen;
         private bool _isShowing;

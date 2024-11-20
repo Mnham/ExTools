@@ -1,8 +1,10 @@
-﻿namespace ExTools.Connection.Models
+﻿#nullable enable
+namespace ExTools.Connection.Models
 {
     public enum ConnectionType
     {
-        Excel,
-        Vertica
+        Excel = 0,
+        Vertica = 1,
+        PostgreSQL = 2,
     }
 }

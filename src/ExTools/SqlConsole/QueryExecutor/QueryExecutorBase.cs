@@ -1,9 +1,10 @@
-﻿using ExTools.Connection.Models;
+﻿#nullable enable
 
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using ExTools.Connection.Models;
 
 namespace ExTools.SqlConsole.QueryExecutor
 {
@@ -15,30 +16,29 @@ namespace ExTools.SqlConsole.QueryExecutor
 
         public abstract QueryExecutorBase CreateQueryExecutor();
 
-        public async Task<DataTable> ExecuteAsync(string commandText, ConnectionOptions connectionOptions) =>
-            await Task.Run(async () =>
-            {
-                _stopwatch.Reset();
+        public Task<DataTable> ExecuteAsync(string commandText, ConnectionOptions connectionOptions) => Task.Run(async () =>
+        {
+            _stopwatch.Reset();
 
-                using DbConnection connection = CreateConnection(connectionOptions);
-                await connection.OpenAsync();
+            using DbConnection connection = CreateConnection(connectionOptions);
+            await connection.OpenAsync();
 
-                using DbCommand command = connection.CreateCommand();
-                command.CommandText = commandText;
+            using DbCommand command = connection.CreateCommand();
+            command.CommandText = commandText;
 
-                _stopwatch.Start();
-                using DbDataReader dataReader = await command.ExecuteReaderAsync();
-                _stopwatch.Stop();
+            _stopwatch.Start();
+            using DbDataReader dataReader = await command.ExecuteReaderAsync();
+            _stopwatch.Stop();
 
-                DataTable dataTable = new();
-                dataTable.Load(dataReader);
+            DataTable dataTable = new();
+            dataTable.Load(dataReader);
 
-                return dataTable;
-            });
+            return dataTable;
+        });
 
         public async Task TestConnectionAsync(ConnectionOptions connectionOptions)
         {
-            string testSelect = "SELECT 1=1";
+            const string testSelect = "SELECT 1=1";
             await ExecuteAsync(testSelect, connectionOptions);
         }
 

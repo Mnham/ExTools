@@ -1,6 +1,7 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿#nullable enable
 
 using System.Collections.Generic;
+using Microsoft.Office.Interop.Excel;
 
 namespace ExTools.SqlConsole.Services
 {

@@ -1,7 +1,8 @@
-﻿using ExTools.Connection.Models;
+﻿#nullable enable
 
 using System.Data.Common;
 using System.Data.OleDb;
+using ExTools.Connection.Models;
 
 namespace ExTools.SqlConsole.QueryExecutor
 {

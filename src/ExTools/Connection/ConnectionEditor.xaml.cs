@@ -1,8 +1,10 @@
-﻿using ExTools.Infrastructure;
-using ExTools.SqlConsole;
+﻿#nullable enable
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ExTools.Connection
 {
@@ -10,18 +12,37 @@ namespace ExTools.Connection
     {
         public ConnectionEditor() => InitializeComponent();
 
-        private void SetPassword(object sender, RoutedEventArgs e)
+        private IEnumerable<T> FindVisualChilds<T>(DependencyObject depObj) where T : DependencyObject
         {
-            if (string.IsNullOrEmpty(PasswordBox.Password))
+            if (depObj == null)
             {
-                return;
+                yield return (T)Enumerable.Empty<T>();
             }
 
-            string securePassword = StringCipher.Encrypt(PasswordBox.Password);
-            PasswordBox.Password = string.Empty;
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+            {
+                DependencyObject ithChild = VisualTreeHelper.GetChild(depObj, i);
+                if (ithChild == null)
+                {
+                    continue;
+                }
 
-            ConsoleViewModel console = (ConsoleViewModel)DataContext;
-            console.ConnectionEditor.SetSecurePassword(securePassword);
+                if (ithChild is T t)
+                {
+                    yield return t;
+                }
+
+                foreach (T childOfChild in FindVisualChilds<T>(ithChild))
+                {
+                    yield return childOfChild;
+                }
+            }
+        }
+
+        private void SetPassword(object sender, RoutedEventArgs e)
+        {
+            DbConnectionData x = FindVisualChilds<DbConnectionData>(ConnectionTypes).FirstOrDefault();
+            x?.SetPassword();
         }
     }
 }

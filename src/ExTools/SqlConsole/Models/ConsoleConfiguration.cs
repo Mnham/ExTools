@@ -1,23 +1,16 @@
-﻿using ExTools.Infrastructure;
-using ExTools.SqlConsole.QueryExecutor;
-
-using ICSharpCode.AvalonEdit.Highlighting;
+﻿#nullable enable
 
 using System;
+using ExTools.Infrastructure;
+using ExTools.SqlConsole.QueryExecutor;
+using ICSharpCode.AvalonEdit.Highlighting;
 
 namespace ExTools.SqlConsole.Models
 {
-    public sealed class ConsoleConfiguration
+    public sealed class ConsoleConfiguration(string accentColor, Func<QueryExecutorBase> queryExecutorGenerator, IHighlightingDefinition syntaxHighlighting)
     {
-        public string AccentColor { get; }
-        public ObjectPool<QueryExecutorBase> QueryExecutorPool { get; }
-        public IHighlightingDefinition SyntaxHighlighting { get; }
-
-        public ConsoleConfiguration(string accentColor, Func<QueryExecutorBase> queryExecutorGenerator, IHighlightingDefinition syntaxHighlighting)
-        {
-            AccentColor = accentColor;
-            QueryExecutorPool = new ObjectPool<QueryExecutorBase>(queryExecutorGenerator);
-            SyntaxHighlighting = syntaxHighlighting;
-        }
+        public string AccentColor { get; } = accentColor;
+        public ObjectPool<QueryExecutorBase> QueryExecutorPool { get; } = new(queryExecutorGenerator);
+        public IHighlightingDefinition SyntaxHighlighting { get; } = syntaxHighlighting;
     }
 }

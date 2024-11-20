@@ -1,9 +1,9 @@
-﻿using ICSharpCode.AvalonEdit;
-
-using Microsoft.Xaml.Behaviors;
+﻿#nullable enable
 
 using System;
 using System.Windows;
+using ICSharpCode.AvalonEdit;
+using Microsoft.Xaml.Behaviors;
 
 namespace ExTools.SqlConsole.Behaviors
 {
@@ -52,8 +52,8 @@ namespace ExTools.SqlConsole.Behaviors
 
         private static void ScriptChangedHandler(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            AvalonEditBehaviour behaviour = sender as AvalonEditBehaviour;
-            string text = e.NewValue as string;
+            var behaviour = sender as AvalonEditBehaviour;
+            var text = e.NewValue as string;
             if (behaviour.AssociatedObject.Document.Text != text)
             {
                 behaviour.AssociatedObject.Document.Text = text;

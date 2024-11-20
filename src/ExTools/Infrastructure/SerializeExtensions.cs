@@ -1,12 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿#nullable enable
 
 using System.IO;
+using Newtonsoft.Json;
 
 namespace ExTools.Infrastructure
 {
     public static class SerializeExtensions
     {
-        public static T DeserializeJson<T>(this FileInfo file) where T : class
+        public static T? DeserializeJson<T>(this FileInfo file) where T : class
         {
             string json = File.ReadAllText(file.FullName);
             JsonSerializerSettings settings = new()

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -23,8 +25,8 @@ namespace ExTools.Dialog
 
         private static void StartFadeInFadeOutAnimation(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            DialogHost dialogHost = (DialogHost)d;
-            bool isShowing = (bool)e.NewValue;
+            var dialogHost = (DialogHost)d;
+            var isShowing = (bool)e.NewValue;
 
             if (isShowing)
             {

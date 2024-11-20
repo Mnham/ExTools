@@ -3,26 +3,26 @@
 using System.Data.Common;
 using ExTools.Connection.Models;
 using ExTools.Infrastructure;
-using Vertica.Data.VerticaClient;
+using Npgsql;
 
 namespace ExTools.SqlConsole.QueryExecutor
 {
-    public sealed class VerticaQueryExecutor : QueryExecutorBase
+    public sealed class PostgreSQLQueryExecutor : QueryExecutorBase
     {
-        public override QueryExecutorBase CreateQueryExecutor() => new VerticaQueryExecutor();
+        public override QueryExecutorBase CreateQueryExecutor() => new PostgreSQLQueryExecutor();
 
         protected override DbConnection CreateConnection(ConnectionOptions options)
         {
-            VerticaConnectionStringBuilder builder = new()
+            NpgsqlConnectionStringBuilder builder = new()
             {
                 Host = options.Host,
                 Port = options.Port,
-                User = options.User,
+                Username = options.User,
                 Password = StringCipher.Decrypt(options.SecurePassword),
                 Database = options.Database
             };
 
-            return new VerticaConnection(builder.ToString());
+            return new NpgsqlConnection(builder.ToString());
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace ExTools.SqlConsole.Models
+﻿#nullable enable
+
+namespace ExTools.SqlConsole.Models
 {
     public sealed class RequestData
     {

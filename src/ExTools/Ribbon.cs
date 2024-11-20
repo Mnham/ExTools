@@ -1,16 +1,16 @@
-﻿using ExTools.SqlConsole;
+﻿#nullable enable
 
+using System.Collections.Generic;
+using ExTools.SqlConsole;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Tools;
 using Microsoft.Office.Tools.Ribbon;
-
-using System.Collections.Generic;
 
 namespace ExTools
 {
     public sealed partial class Ribbon
     {
-        private readonly Dictionary<Workbook, CustomTaskPane> TaskPanes = new();
+        private readonly Dictionary<Workbook, CustomTaskPane> _taskPanes = [];
 
         private void ReleaseTaskPane(Workbook workbook)
         {
@@ -20,10 +20,10 @@ namespace ExTools
             {
                 workbook.BeforeClose -= WorkbookBeforeCloseHandler;
 
-                if (TaskPanes.Count > 1)
+                if (_taskPanes.Count > 1)
                 {
-                    CustomTaskPane taskPane = TaskPanes[workbook];
-                    TaskPanes.Remove(workbook);
+                    CustomTaskPane taskPane = _taskPanes[workbook];
+                    _taskPanes.Remove(workbook);
                     Globals.ThisAddIn.RemoveTaskPane(taskPane);
                 }
             }
@@ -37,7 +37,7 @@ namespace ExTools
         {
             Workbook activeWorkbook = Globals.ThisAddIn.Application.ActiveWorkbook;
 
-            if (TaskPanes.TryGetValue(activeWorkbook, out CustomTaskPane taskPane))
+            if (_taskPanes.TryGetValue(activeWorkbook, out CustomTaskPane taskPane))
             {
                 if (taskPane.Visible)
                 {
@@ -57,7 +57,7 @@ namespace ExTools
                 taskPane.DockPosition = Microsoft.Office.Core.MsoCTPDockPosition.msoCTPDockPositionBottom;
                 taskPane.Visible = true;
 
-                TaskPanes[activeWorkbook] = taskPane;
+                _taskPanes[activeWorkbook] = taskPane;
             }
         }
     }

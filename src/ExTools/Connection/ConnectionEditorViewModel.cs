@@ -1,15 +1,14 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿#nullable enable
 
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ExTools.Connection.Helpers;
 using ExTools.Connection.Managers;
 using ExTools.Connection.Models;
 using ExTools.SqlConsole.Models;
 using ExTools.SqlConsole.Services;
-
 using Microsoft.Win32;
-
-using System.Threading.Tasks;
 
 namespace ExTools.Connection
 {
@@ -22,7 +21,7 @@ namespace ExTools.Connection
         private string _host;
         private int _port;
         private string _primaryHueMidColor;
-        private string _securePassword;
+        private string? _securePassword;
         private ConnectionOptionsViewModel _selectedConnection;
         private ConnectionType _selectedConnectionType;
         private string _user;
@@ -61,7 +60,7 @@ namespace ExTools.Connection
 
         public RelayCommand SaveChangesCommand { get; }
 
-        public ConnectionOptionsViewModel SelectedConnection
+        public ConnectionOptionsViewModel? SelectedConnection
         {
             get => _selectedConnection;
             set

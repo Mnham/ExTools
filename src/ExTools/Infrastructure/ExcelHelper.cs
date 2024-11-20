@@ -1,10 +1,10 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿#nullable enable
 
 using System;
 using System.Data;
 using System.IO;
 using System.Linq;
-
+using Microsoft.Office.Interop.Excel;
 using DataTable = System.Data.DataTable;
 
 namespace ExTools.Infrastructure
@@ -55,7 +55,7 @@ namespace ExTools.Infrastructure
 
         private static object[,] GetData(DataTable dataTable)
         {
-            object[,] array = new object[dataTable.Rows.Count, dataTable.Columns.Count];
+            var array = new object[dataTable.Rows.Count, dataTable.Columns.Count];
             for (int r = 0; r < dataTable.Rows.Count; r++)
             {
                 for (int c = 0; c < dataTable.Columns.Count; c++)

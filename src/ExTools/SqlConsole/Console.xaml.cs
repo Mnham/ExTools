@@ -1,8 +1,8 @@
-﻿using ExTools.SqlConsole.Services;
-
-using ICSharpCode.AvalonEdit.Search;
+﻿#nullable enable
 
 using System.Windows.Controls;
+using ExTools.SqlConsole.Services;
+using ICSharpCode.AvalonEdit.Search;
 
 namespace ExTools.SqlConsole
 {

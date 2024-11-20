@@ -1,18 +1,17 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-
-using ExTools.Connection.Helpers;
-using ExTools.Connection.Managers;
-using ExTools.Connection.Models;
-using ExTools.SqlConsole;
-using ExTools.SqlConsole.Services;
-
-using MaterialDesignThemes.Wpf;
+﻿#nullable enable
 
 using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using ExTools.Connection.Helpers;
+using ExTools.Connection.Managers;
+using ExTools.Connection.Models;
+using ExTools.SqlConsole;
+using ExTools.SqlConsole.Services;
+using MaterialDesignThemes.Wpf;
 
 namespace ExTools.Connection
 {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -38,7 +40,7 @@ namespace ExTools.Infrastructure
             using MemoryStream memoryStream = new(cipherTextBytes);
             using CryptoStream cryptoStream = new(memoryStream, decryptor, CryptoStreamMode.Read);
 
-            byte[] plainTextBytes = new byte[cipherTextBytes.Length];
+            var plainTextBytes = new byte[cipherTextBytes.Length];
             int decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
 
             memoryStream.Close();
@@ -75,7 +77,7 @@ namespace ExTools.Infrastructure
 
         private static byte[] Generate256BitsOfRandomEntropy()
         {
-            byte[] randomBytes = new byte[32];
+            var randomBytes = new byte[32];
             using (RNGCryptoServiceProvider rngCsp = new())
             {
                 rngCsp.GetBytes(randomBytes);

@@ -1,6 +1,14 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ExTools.Connection;
 using ExTools.Connection.Managers;
 using ExTools.Connection.Models;
@@ -9,19 +17,9 @@ using ExTools.Infrastructure;
 using ExTools.SqlConsole.Models;
 using ExTools.SqlConsole.QueryExecutor;
 using ExTools.SqlConsole.Services;
-
 using ICSharpCode.AvalonEdit.Highlighting;
-
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-
 using DataTable = System.Data.DataTable;
 
 namespace ExTools.SqlConsole
@@ -36,13 +34,13 @@ namespace ExTools.SqlConsole
         private long _requestExecutionMilliseconds;
         private FileInfo _requestFile;
 
-        public string AccentColor => _configuration?.AccentColor;
+        public string? AccentColor => _configuration?.AccentColor;
 
         public ConnectionEditorViewModel ConnectionEditor { get; }
 
         public ConnectionsManager ConnectionsManager { get; }
 
-        public string ConnectionType => _connectionOptions is null ? null : $"[{_connectionOptions.ConnectionType}]";
+        public string? ConnectionType => _connectionOptions is null ? null : $"[{_connectionOptions.ConnectionType}]";
 
         public RelayCommand ConnectToActiveWorkbookCommand { get; }
 
@@ -50,7 +48,7 @@ namespace ExTools.SqlConsole
 
         public RelayCommand CreateNewRequestCommand { get; }
 
-        public string DatabaseName => _connectionOptions is null ? null : $"<{_connectionOptions.DataSource}{_connectionOptions.Database}>";
+        public string? DatabaseName => _connectionOptions is null ? null : $"<{_connectionOptions.DataSource}{_connectionOptions.Database}>";
 
         public DialogHostViewModel DialogHost { get; } = new();
 
@@ -92,9 +90,9 @@ namespace ExTools.SqlConsole
 
         public string SelectedScript { get; set; }
 
-        public IHighlightingDefinition SyntaxHighlighting => _configuration?.SyntaxHighlighting;
+        public IHighlightingDefinition? SyntaxHighlighting => _configuration?.SyntaxHighlighting;
 
-        private FileInfo RequestFile
+        private FileInfo? RequestFile
         {
             get => _requestFile;
             set
@@ -135,7 +133,7 @@ namespace ExTools.SqlConsole
 
         private bool CanExecuteQuery() =>
             !string.IsNullOrWhiteSpace(ResultSheetName)
-            && _connectionOptions is not null;
+                && _connectionOptions is not null;
 
         private void ConnectToActiveWorkbook()
         {
@@ -178,7 +176,7 @@ namespace ExTools.SqlConsole
             if (openFileDialog.ShowDialog() == true)
             {
                 RequestFile = new FileInfo(openFileDialog.FileName);
-                RequestData requestData = SerializeExtensions.DeserializeJson<RequestData>(RequestFile);
+                RequestData? requestData = RequestFile.DeserializeJson<RequestData>();
                 UpdateRequestData(requestData);
             }
         }
@@ -217,7 +215,7 @@ namespace ExTools.SqlConsole
             }
         }
 
-        private void Save() => SerializeExtensions.SerializeJson(_requestData, RequestFile);
+        private void Save() => _requestData.SerializeJson(RequestFile);
 
         private void SaveAsRequest()
         {
@@ -230,7 +228,7 @@ namespace ExTools.SqlConsole
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                RequestFile = new(saveFileDialog.FileName);
+                RequestFile = new FileInfo(saveFileDialog.FileName);
                 Save();
             }
         }

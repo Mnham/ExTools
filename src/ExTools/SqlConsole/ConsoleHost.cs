@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿#nullable enable
+
+using System.Windows.Forms;
 
 namespace ExTools.SqlConsole
 {

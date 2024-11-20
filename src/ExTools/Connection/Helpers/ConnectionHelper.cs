@@ -1,11 +1,12 @@
-﻿using ExTools.Connection.Models;
+﻿#nullable enable
+
+using System;
+using System.Threading.Tasks;
+using ExTools.Connection.Models;
 using ExTools.Dialog;
 using ExTools.SqlConsole.Models;
 using ExTools.SqlConsole.QueryExecutor;
 using ExTools.SqlConsole.Services;
-
-using System;
-using System.Threading.Tasks;
 
 namespace ExTools.Connection.Helpers
 {
